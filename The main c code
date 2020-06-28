@@ -1,0 +1,47 @@
+#include<stdio.h>
+#include<stdlib.h>
+int r,c; //globals, again, not preferred//
+void print_matrix(int arr[r][c]){
+    for(int i=0;i<r;i++){
+        for(int j=0;j<c;j++){
+            printf("%d ", arr[i][j]);
+        }
+        printf("\n");
+    }
+}
+int find(int arr[r][c], int i, int j, int key){
+    int res=0;
+    while(j!=-1){
+        if(arr[i][j]<key)
+        i++;
+        else
+        {
+        if(arr[i][j]==key){
+            res=1;
+            break;
+        }
+        else
+        j--;
+        }
+    }
+    return res;
+}
+int main(){
+    printf("Enter the value of your matrix's rows and columns:\n");
+    scanf("%d %d", &r, &c);
+    int arr[r][c];
+    printf("Enter the values one by one row-wise: \n");
+    for(int i=0;i<r;i++){
+        for(int j=0;j<c;j++){
+            scanf("%d", &arr[i][j]);
+        }
+    }
+    printf("printing the matrix:\n");
+    print_matrix(arr);
+    printf("Enter the element you want to search for in this matrix:\n");
+    int key;
+    scanf("%d", &key);
+    printf("Finding the key: \n");
+    printf("%s", find(arr, 0, r, key)==0?"Not found":"Found");
+    return 0;
+}
